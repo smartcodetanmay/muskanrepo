@@ -1,591 +1,882 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Muskan Agarwal | Risk Analyst & MBA Candidate</title>
-    <!-- Google Fonts & FontAwesome -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <style>
-        :root {
-            --bg-main: #060913;
-            --accent-blue: #3b82f6;
-            --accent-purple: #8b5cf6;
-            --accent-glow: rgba(59, 130, 246, 0.35);
-            --card-bg: rgba(15, 23, 42, 0.65);
-            --card-border: rgba(255, 255, 255, 0.08);
-            --text-light: #f8fafc;
-            --text-muted: #94a3b8;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Muskan Agarwal | Risk Analyst & MBA Candidate</title>
+<!-- Google Fonts & FontAwesome -->
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+    :root {
+        --bg-main: #02040a;
+        --accent-blue: #3b82f6;
+        --accent-purple: #8b5cf6;
+        --accent-cyan: #06b6d4;
+        --accent-glow: rgba(59, 130, 246, 0.4);
+        --card-bg: rgba(10, 16, 32, 0.65);
+        --card-border: rgba(255, 255, 255, 0.1);
+        --text-light: #f8fafc;
+        --text-muted: #94a3b8;
+    }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            scroll-behavior: smooth;
-        }
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        scroll-behavior: smooth;
+    }
 
-        body {
-            background-color: var(--bg-main);
-            color: var(--text-light);
-            line-height: 1.6;
-            overflow-x: hidden;
-            position: relative;
-        }
+    body {
+        background-color: var(--bg-main);
+        color: var(--text-light);
+        line-height: 1.6;
+        overflow-x: hidden;
+        position: relative;
+    }
 
-        /* Dynamic Canvas Background */
-        #bg-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: -1;
-            pointer-events: none;
-        }
+    /* Interactive Space Canvas */
+    #space-canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: -3;
+        pointer-events: none;
+    }
 
-        /* Glassmorphic Navbar */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(6, 9, 19, 0.75);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--card-border);
-            z-index: 1000;
-            padding: 1.2rem 8%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+    /* Glowing Vector Moon Element */
+    .moon-container {
+        position: fixed;
+        top: 8%;
+        left: 8%;
+        width: 220px;
+        height: 220px;
+        z-index: -2;
+        pointer-events: none;
+        animation: moonPulse 8s ease-in-out infinite alternate;
+        filter: drop-shadow(0 0 35px rgba(186, 230, 253, 0.35));
+    }
 
-        .logo {
-            font-size: 1.4rem;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-            color: var(--text-light);
-        }
+    .moon-svg {
+        width: 100%;
+        height: 100%;
+    }
 
-        .logo span {
-            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+    @keyframes moonPulse {
+        0% { transform: translateY(0px) scale(1); filter: drop-shadow(0 0 25px rgba(186, 230, 253, 0.25)); }
+        100% { transform: translateY(-10px) scale(1.03); filter: drop-shadow(0 0 45px rgba(186, 230, 253, 0.45)); }
+    }
 
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2.5rem;
-        }
+    /* Floating Astronauts Base Styles */
+    .astronaut-container {
+        position: fixed;
+        z-index: -1;
+        pointer-events: none;
+        filter: drop-shadow(0 0 20px rgba(6, 182, 212, 0.45));
+    }
 
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-muted);
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
-        }
+    .astronaut-svg {
+        width: 100%;
+        height: auto;
+    }
 
-        .nav-links a:hover {
-            color: var(--text-light);
-            text-shadow: 0 0 12px var(--accent-glow);
-        }
+    /* Astronaut 1: Top Right */
+    .astro-1 {
+        top: 18%;
+        right: 5%;
+        width: 160px;
+        animation: floatAstro1 11s ease-in-out infinite alternate;
+    }
+    .astro-1 .astronaut-svg {
+        animation: rotateAstro1 16s ease-in-out infinite alternate;
+    }
 
-        /* Hero Section */
-        .hero {
-            padding: 10rem 8% 5rem;
-            min-height: 90vh;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            max-width: 1300px;
-            margin: 0 auto;
-            gap: 4rem;
-            perspective: 1000px;
-        }
+    /* Astronaut 2: Middle Left */
+    .astro-2 {
+        top: 48%;
+        left: 3%;
+        width: 110px;
+        opacity: 0.85;
+        animation: floatAstro2 14s ease-in-out infinite alternate;
+    }
+    .astro-2 .astronaut-svg {
+        animation: rotateAstro2 20s ease-in-out infinite alternate;
+    }
 
-        .hero-text { flex: 1.2; }
+    /* Astronaut 3: Bottom Right */
+    .astro-3 {
+        bottom: 12%;
+        right: 12%;
+        width: 85px;
+        opacity: 0.75;
+        animation: floatAstro3 18s ease-in-out infinite alternate;
+    }
+    .astro-3 .astronaut-svg {
+        animation: rotateAstro3 22s ease-in-out infinite alternate;
+    }
 
-        .badge {
-            background: rgba(59, 130, 246, 0.1);
-            border: 1px solid rgba(59, 130, 246, 0.3);
-            color: #60a5fa;
-            padding: 0.5rem 1.2rem;
-            border-radius: 30px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 0 20px rgba(59, 130, 246, 0.15);
-        }
+    /* Animations for Astronauts */
+    @keyframes floatAstro1 {
+        0% { transform: translateY(0px) translateX(0px); }
+        50% { transform: translateY(-35px) translateX(-20px); }
+        100% { transform: translateY(25px) translateX(-10px); }
+    }
+    @keyframes rotateAstro1 {
+        0% { transform: rotate(-5deg); }
+        50% { transform: rotate(15deg); }
+        100% { transform: rotate(-5deg); }
+    }
 
-        .hero-text h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            line-height: 1.15;
-            margin-bottom: 1.2rem;
-            background: linear-gradient(135deg, #ffffff 30%, #94a3b8 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+    @keyframes floatAstro2 {
+        0% { transform: translateY(0px) translateX(0px); }
+        50% { transform: translateY(40px) translateX(25px); }
+        100% { transform: translateY(-20px) translateX(10px); }
+    }
+    @keyframes rotateAstro2 {
+        0% { transform: rotate(10deg); }
+        50% { transform: rotate(-18deg); }
+        100% { transform: rotate(10deg); }
+    }
 
-        .hero-text p {
-            font-size: 1.15rem;
-            color: var(--text-muted);
-            margin-bottom: 2.5rem;
-            max-width: 600px;
-        }
+    @keyframes floatAstro3 {
+        0% { transform: translateY(0px) translateX(0px); }
+        50% { transform: translateY(-30px) translateX(-25px); }
+        100% { transform: translateY(20px) translateX(15px); }
+    }
+    @keyframes rotateAstro3 {
+        0% { transform: rotate(-15deg); }
+        50% { transform: rotate(25deg); }
+        100% { transform: rotate(-15deg); }
+    }
 
-        .btn-group {
-            display: flex;
-            gap: 1.2rem;
-            flex-wrap: wrap;
-        }
+    /* Glassmorphic Navbar */
+    nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: rgba(2, 4, 10, 0.75);
+        backdrop-filter: blur(25px);
+        -webkit-backdrop-filter: blur(25px);
+        border-bottom: 1px solid var(--card-border);
+        z-index: 1000;
+        padding: 1.2rem 8%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
 
-        .btn {
-            padding: 0.9rem 1.8rem;
-            border-radius: 12px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            display: inline-flex;
-            align-items: center;
-            gap: 0.6rem;
-            font-size: 0.95rem;
-        }
+    .logo {
+        font-size: 1.5rem;
+        font-weight: 800;
+        letter-spacing: -0.5px;
+        color: var(--text-light);
+    }
 
-        .btn-primary {
-            background: linear-gradient(135deg, var(--accent-blue) 0%, #1d4ed8 100%);
-            color: var(--text-light);
-            box-shadow: 0 10px 25px -5px var(--accent-glow);
-        }
+    .logo span {
+        background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
 
-        .btn-primary:hover {
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 15px 30px -5px var(--accent-glow);
-        }
+    .nav-links {
+        display: flex;
+        list-style: none;
+        gap: 2.5rem;
+    }
 
-        .btn-secondary {
-            border: 1px solid var(--card-border);
-            color: var(--text-light);
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
-        }
+    .nav-links a {
+        text-decoration: none;
+        color: var(--text-muted);
+        font-weight: 500;
+        font-size: 0.95rem;
+        transition: all 0.3s ease;
+    }
 
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.08);
-            transform: translateY(-3px);
-            border-color: rgba(255, 255, 255, 0.2);
-        }
+    .nav-links a:hover {
+        color: var(--text-light);
+        text-shadow: 0 0 15px var(--accent-cyan);
+    }
 
-        /* 3D Floating Photo Card Frame */
-        .hero-img-container {
-            flex: 0.8;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+    /* Hero Section */
+    .hero {
+        padding: 11rem 8% 6rem;
+        min-height: 92vh;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 1300px;
+        margin: 0 auto;
+        gap: 4rem;
+    }
 
-        .card-3d-wrapper {
-            position: relative;
-            width: 310px;
-            height: 390px;
-            border-radius: 28px;
-            padding: 10px;
-            background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.01) 100%);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.8), 0 0 40px rgba(59, 130, 246, 0.2);
-            backdrop-filter: blur(20px);
-            transform-style: preserve-3d;
-            animation: float3D 6s ease-in-out infinite;
-            transition: transform 0.2s ease-out;
-        }
+    .hero-text { flex: 1.2; }
 
-        .profile-pic {
-            width: 100%;
-            height: 100%;
-            border-radius: 20px;
-            object-fit: cover;
-            display: block;
-        }
+    .badge {
+        background: rgba(6, 182, 212, 0.1);
+        border: 1px solid rgba(6, 182, 212, 0.3);
+        color: var(--accent-cyan);
+        padding: 0.55rem 1.3rem;
+        border-radius: 30px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        margin-bottom: 1.5rem;
+        box-shadow: 0 0 25px rgba(6, 182, 212, 0.2);
+        animation: pulseBadge 3s infinite alternate;
+    }
 
-        @keyframes float3D {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-        }
+    @keyframes pulseBadge {
+        0% { box-shadow: 0 0 15px rgba(6, 182, 212, 0.2); }
+        100% { box-shadow: 0 0 30px rgba(139, 92, 246, 0.4); }
+    }
 
-        /* Sections */
-        .section {
-            padding: 6rem 8%;
-            max-width: 1300px;
-            margin: 0 auto;
-        }
+    .hero-text h1 {
+        font-size: 3.8rem;
+        font-weight: 800;
+        line-height: 1.15;
+        margin-bottom: 1.2rem;
+        background: linear-gradient(135deg, #ffffff 40%, #94a3b8 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
 
-        .section-title {
-            text-align: center;
-            font-size: 2.2rem;
-            font-weight: 800;
-            color: var(--text-light);
-            margin-bottom: 3.5rem;
-            position: relative;
-        }
+    .hero-text p {
+        font-size: 1.18rem;
+        color: var(--text-muted);
+        margin-bottom: 2.5rem;
+        max-width: 620px;
+    }
 
-        .section-title::after {
-            content: '';
-            width: 50px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
-            display: block;
-            margin: 0.6rem auto 0;
-            border-radius: 2px;
-        }
+    .btn-group {
+        display: flex;
+        gap: 1.2rem;
+        flex-wrap: wrap;
+    }
 
-        /* Grid & Cards */
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
-            gap: 2rem;
-        }
+    .btn {
+        padding: 0.95rem 2rem;
+        border-radius: 14px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        font-size: 0.95rem;
+    }
 
-        .card {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            padding: 2.2rem;
-            border-radius: 24px;
-            backdrop-filter: blur(16px);
-            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            overflow: hidden;
-        }
+    .btn-primary {
+        background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-purple) 100%);
+        color: var(--text-light);
+        box-shadow: 0 10px 30px -5px rgba(59, 130, 246, 0.5);
+    }
 
-        .card:hover {
-            transform: translateY(-8px);
-            border-color: rgba(59, 130, 246, 0.4);
-            box-shadow: 0 20px 40px -15px var(--accent-glow);
-        }
+    .btn-primary:hover {
+        transform: translateY(-4px) scale(1.03);
+        box-shadow: 0 15px 35px -5px rgba(139, 92, 246, 0.6);
+    }
 
-        .card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 1.2rem;
-        }
+    .btn-secondary {
+        border: 1px solid var(--card-border);
+        color: var(--text-light);
+        background: rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(12px);
+    }
 
-        .card-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--text-light);
-        }
+    .btn-secondary:hover {
+        background: rgba(255, 255, 255, 0.08);
+        transform: translateY(-4px);
+        border-color: rgba(255, 255, 255, 0.25);
+    }
 
-        .card-subtitle {
-            color: #60a5fa;
-            font-weight: 600;
-            font-size: 0.95rem;
-            margin-top: 0.2rem;
-        }
+    /* Section Headers */
+    .section {
+        padding: 6rem 8%;
+        max-width: 1300px;
+        margin: 0 auto;
+    }
 
-        .date-badge {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid var(--card-border);
-            padding: 0.38rem 0.85rem;
-            border-radius: 20px;
-        }
+    .section-title {
+        text-align: center;
+        font-size: 2.3rem;
+        font-weight: 800;
+        color: var(--text-light);
+        margin-bottom: 3.5rem;
+        position: relative;
+    }
 
-        .card ul {
-            padding-left: 1.2rem;
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
+    .section-title::after {
+        content: '';
+        width: 60px;
+        height: 4px;
+        background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
+        display: block;
+        margin: 0.6rem auto 0;
+        border-radius: 2px;
+        box-shadow: 0 0 12px var(--accent-cyan);
+    }
 
-        .card ul li { margin-bottom: 0.6rem; }
+    /* Grid & Cyber Glass Cards */
+    .cards-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+        gap: 2.2rem;
+    }
 
-        /* Skill Pills */
-        .skills-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            justify-content: center;
-            max-width: 900px;
-            margin: 0 auto;
-        }
+    .card {
+        background: var(--card-bg);
+        border: 1px solid var(--card-border);
+        padding: 2.3rem;
+        border-radius: 24px;
+        backdrop-filter: blur(20px);
+        box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.6);
+        transition: all 0.4s ease;
+        position: relative;
+        overflow: hidden;
+    }
 
-        .skill-tag {
-            background: rgba(15, 23, 42, 0.8);
-            border: 1px solid var(--card-border);
-            padding: 0.8rem 1.6rem;
-            border-radius: 30px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            color: var(--text-light);
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-            display: inline-flex;
-            align-items: center;
-            gap: 0.6rem;
-        }
+    .card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+        transition: 0.6s;
+    }
 
-        .skill-tag i { color: var(--accent-blue); }
+    .card:hover::before {
+        left: 100%;
+    }
 
-        .skill-tag:hover {
-            transform: translateY(-4px) scale(1.05);
-            border-color: var(--accent-blue);
-            box-shadow: 0 10px 20px -5px var(--accent-glow);
-            color: #60a5fa;
-        }
+    .card:hover {
+        transform: translateY(-8px);
+        border-color: rgba(59, 130, 246, 0.5);
+        box-shadow: 0 20px 40px -10px var(--accent-glow);
+    }
 
-        /* Footer */
-        footer {
-            background: rgba(6, 9, 19, 0.95);
-            border-top: 1px solid var(--card-border);
-            text-align: center;
-            padding: 3rem 8%;
-            margin-top: 5rem;
-        }
+    .card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 1.2rem;
+    }
 
-        .footer-socials {
-            display: flex;
-            justify-content: center;
-            gap: 1.8rem;
-            margin-bottom: 1.5rem;
-        }
+    .card-title {
+        font-size: 1.35rem;
+        font-weight: 700;
+        color: var(--text-light);
+    }
 
-        .footer-socials a {
-            color: var(--text-muted);
-            font-size: 1.6rem;
-            transition: all 0.3s ease;
-        }
+    .card-subtitle {
+        color: var(--accent-cyan);
+        font-weight: 600;
+        font-size: 0.95rem;
+        margin-top: 0.2rem;
+    }
 
-        .footer-socials a:hover {
-            color: var(--accent-blue);
-            transform: translateY(-3px);
-        }
+    .date-badge {
+        font-size: 0.8rem;
+        color: var(--text-muted);
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid var(--card-border);
+        padding: 0.4rem 0.9rem;
+        border-radius: 20px;
+    }
 
-        /* Responsive */
-        @media (max-width: 900px) {
-            .hero { flex-direction: column-reverse; text-align: center; padding-top: 8rem; gap: 3rem;}
-            .hero-text h1 { font-size: 2.5rem; }
-            .nav-links { display: none; }
-            .btn-group { justify-content: center; }
-            .card-3d-wrapper { width: 260px; height: 330px; }
-        }
-    </style>
+    .card ul {
+        padding-left: 1.2rem;
+        color: var(--text-muted);
+        font-size: 0.95rem;
+    }
+
+    .card ul li { margin-bottom: 0.6rem; }
+
+    /* Skill Tags */
+    .skills-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.1rem;
+        justify-content: center;
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    .skill-tag {
+        background: rgba(10, 16, 32, 0.85);
+        border: 1px solid var(--card-border);
+        padding: 0.85rem 1.8rem;
+        border-radius: 30px;
+        font-weight: 600;
+        font-size: 0.95rem;
+        color: var(--text-light);
+        backdrop-filter: blur(12px);
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.7rem;
+    }
+
+    .skill-tag i { color: var(--accent-cyan); }
+
+    .skill-tag:hover {
+        transform: translateY(-5px) scale(1.05);
+        border-color: var(--accent-cyan);
+        box-shadow: 0 10px 25px -5px rgba(6, 182, 212, 0.4);
+        color: var(--accent-cyan);
+    }
+
+    /* Footer */
+    footer {
+        background: rgba(2, 4, 10, 0.95);
+        border-top: 1px solid var(--card-border);
+        text-align: center;
+        padding: 3rem 8%;
+        margin-top: 5rem;
+    }
+
+    .footer-socials {
+        display: flex;
+        justify-content: center;
+        gap: 1.8rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .footer-socials a {
+        color: var(--text-muted);
+        font-size: 1.6rem;
+        transition: all 0.3s ease;
+    }
+
+    .footer-socials a:hover {
+        color: var(--accent-cyan);
+        transform: translateY(-3px);
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+        .hero { flex-direction: column; text-align: center; padding-top: 8rem; gap: 3rem;}
+        .hero-text h1 { font-size: 2.6rem; }
+        .nav-links { display: none; }
+        .btn-group { justify-content: center; }
+        .moon-container { width: 130px; height: 130px; left: 2%; top: 10%; }
+        .astro-1 { width: 90px; right: 2%; top: 12%; }
+        .astro-2 { width: 75px; left: 1%; top: 50%; }
+        .astro-3 { display: none; }
+    }
+</style>
 </head>
 <body>
 
-    <!-- Dynamic Interactive Canvas Background -->
-    <canvas id="bg-canvas"></canvas>
+<!-- Dynamic Interactive Space Canvas -->
+<canvas id="space-canvas"></canvas>
 
-    <!-- Glassmorphic Header -->
-    <nav>
-        <div class="logo">Muskan <span>Agarwal</span></div>
-        <ul class="nav-links">
-            <li><a href="#about">About</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#education">Education</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#skills">Skills</a></li>
-        </ul>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="hero" id="about">
-        <div class="hero-text">
-            <span class="badge"><i class="fas fa-shield-halved"></i> Risk Analyst @ Pixel Truth</span>
-            <h1>Muskan Agarwal</h1>
-            <p>MBA Candidate specializing in Finance & Marketing. Currently managing end-to-end Merchant Onboarding and Fraud Risk Management for partner gateways including <strong>HDFC Bank, Easebuzz, and PhonePe</strong>.</p>
-            <div class="btn-group">
-                <a href="https://linkedin.com/in/muskan-agarwal-58710a343" target="_blank" class="btn btn-primary"><i class="fab fa-linkedin"></i> LinkedIn Profile</a>
-                <a href="mailto:agarwalmuskan148@gmail.com" class="btn btn-secondary"><i class="fas fa-envelope"></i> Email Me</a>
-            </div>
-        </div>
+<!-- Vector Moon Element with Realistic Surface Craters -->
+<div class="moon-container">
+    <svg class="moon-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <!-- Outer Glowing Aura -->
+        <circle cx="100" cy="100" r="95" fill="url(#moonGlowGradient)" opacity="0.25"/>
+        <!-- Moon Main Body -->
+        <circle cx="100" cy="100" r="80" fill="url(#moonBodyGradient)"/>
         
-        <!-- 3D Photo Frame -->
-        <!-- <div class="hero-img-container">
-            <div class="card-3d-wrapper" id="heroCard">
-                <img src="original_msg.eml" alt="Muskan Agarwal" class="profile-pic">
-            </div>
-        </div> -->
-    </section>
+        <!-- Realistic Craters -->
+        <circle cx="70" cy="65" r="14" fill="#94a3b8" opacity="0.35"/>
+        <circle cx="67" cy="63" r="12" fill="#64748b" opacity="0.3"/>
+        
+        <circle cx="130" cy="85" r="18" fill="#94a3b8" opacity="0.3"/>
+        <circle cx="127" cy="83" r="15" fill="#64748b" opacity="0.25"/>
 
-    <!-- Experience Section -->
-    <section class="section" id="experience">
-        <h2 class="section-title">Work Experience</h2>
-        <div class="cards-grid">
-            <div class="card">
-                <div class="card-header">
-                    <div>
-                        <div class="card-title">Risk Analyst</div>
-                        <div class="card-subtitle">Pixel Truth</div>
-                    </div>
-                    <span class="date-badge">May 2024 - Present</span>
+        <circle cx="85" cy="135" r="22" fill="#94a3b8" opacity="0.35"/>
+        <circle cx="82" cy="132" r="18" fill="#64748b" opacity="0.28"/>
+
+        <circle cx="135" cy="140" r="10" fill="#94a3b8" opacity="0.25"/>
+        <circle cx="50" cy="110" r="8" fill="#94a3b8" opacity="0.2"/>
+
+        <!-- Shadow Overlay for 3D Sphere Effect -->
+        <path d="M100,20 A80,80 0 0,0 180,100 A80,80 0 0,1 100,20 Z" fill="#02040a" opacity="0.25"/>
+
+        <!-- Gradients -->
+        <defs>
+            <radialGradient id="moonBodyGradient" cx="35%" cy="35%" r="65%">
+                <stop offset="0%" stop-color="#ffffff"/>
+                <stop offset="50%" stop-color="#e2e8f0"/>
+                <stop offset="85%" stop-color="#cbd5e1"/>
+                <stop offset="100%" stop-color="#94a3b8"/>
+            </radialGradient>
+            <radialGradient id="moonGlowGradient" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#f0f9ff"/>
+                <stop offset="70%" stop-color="#38bdf8"/>
+                <stop offset="100%" stop-color="#02040a"/>
+            </radialGradient>
+        </defs>
+    </svg>
+</div>
+
+<!-- Astronaut 1 (Top Right) -->
+<div class="astronaut-container astro-1">
+    <svg class="astronaut-svg" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="250" cy="200" r="110" fill="url(#visorGradient1)" opacity="0.15"/>
+        <path d="M180,260 C180,200 320,200 320,260 L330,400 C330,430 300,450 250,450 C200,450 170,430 170,400 Z" fill="#e2e8f0"/>
+        <rect x="215" y="270" width="70" height="50" rx="10" fill="#0f172a" stroke="#06b6d4" stroke-width="3"/>
+        <circle cx="235" cy="295" r="6" fill="#3b82f6"/>
+        <circle cx="255" cy="295" r="6" fill="#8b5cf6"/>
+        <circle cx="275" cy="295" r="6" fill="#06b6d4"/>
+        <circle cx="250" cy="180" r="85" fill="#f8fafc" stroke="#cbd5e1" stroke-width="6"/>
+        <ellipse cx="250" cy="180" rx="68" ry="52" fill="url(#visorGradient1)"/>
+        <path d="M210,150 Q250,135 285,150 A52 52 0 0 1 210,150 Z" fill="#ffffff" opacity="0.45"/>
+        <rect x="140" y="210" width="35" height="150" rx="12" fill="#cbd5e1"/>
+        <rect x="325" y="210" width="35" height="150" rx="12" fill="#cbd5e1"/>
+        <defs>
+            <linearGradient id="visorGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#06b6d4"/>
+                <stop offset="50%" stop-color="#3b82f6"/>
+                <stop offset="100%" stop-color="#8b5cf6"/>
+            </linearGradient>
+        </defs>
+    </svg>
+</div>
+
+<!-- Astronaut 2 (Middle Left) -->
+<div class="astronaut-container astro-2">
+    <svg class="astronaut-svg" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="250" cy="200" r="110" fill="url(#visorGradient2)" opacity="0.15"/>
+        <path d="M180,260 C180,200 320,200 320,260 L330,400 C330,430 300,450 250,450 C200,450 170,430 170,400 Z" fill="#cbd5e1"/>
+        <rect x="215" y="270" width="70" height="50" rx="10" fill="#0f172a" stroke="#8b5cf6" stroke-width="3"/>
+        <circle cx="235" cy="295" r="6" fill="#ec4899"/>
+        <circle cx="255" cy="295" r="6" fill="#8b5cf6"/>
+        <circle cx="275" cy="295" r="6" fill="#3b82f6"/>
+        <circle cx="250" cy="180" r="85" fill="#f1f5f9" stroke="#94a3b8" stroke-width="6"/>
+        <ellipse cx="250" cy="180" rx="68" ry="52" fill="url(#visorGradient2)"/>
+        <path d="M210,150 Q250,135 285,150 A52 52 0 0 1 210,150 Z" fill="#ffffff" opacity="0.45"/>
+        <rect x="140" y="210" width="35" height="150" rx="12" fill="#94a3b8"/>
+        <rect x="325" y="210" width="35" height="150" rx="12" fill="#94a3b8"/>
+        <defs>
+            <linearGradient id="visorGradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#8b5cf6"/>
+                <stop offset="50%" stop-color="#ec4899"/>
+                <stop offset="100%" stop-color="#3b82f6"/>
+            </linearGradient>
+        </defs>
+    </svg>
+</div>
+
+<!-- Astronaut 3 (Bottom Right) -->
+<div class="astronaut-container astro-3">
+    <svg class="astronaut-svg" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="250" cy="200" r="110" fill="url(#visorGradient3)" opacity="0.15"/>
+        <path d="M180,260 C180,200 320,200 320,260 L330,400 C330,430 300,450 250,450 C200,450 170,430 170,400 Z" fill="#e2e8f0"/>
+        <rect x="215" y="270" width="70" height="50" rx="10" fill="#0f172a" stroke="#3b82f6" stroke-width="3"/>
+        <circle cx="235" cy="295" r="6" fill="#06b6d4"/>
+        <circle cx="255" cy="295" r="6" fill="#3b82f6"/>
+        <circle cx="275" cy="295" r="6" fill="#10b981"/>
+        <circle cx="250" cy="180" r="85" fill="#f8fafc" stroke="#cbd5e1" stroke-width="6"/>
+        <ellipse cx="250" cy="180" rx="68" ry="52" fill="url(#visorGradient3)"/>
+        <path d="M210,150 Q250,135 285,150 A52 52 0 0 1 210,150 Z" fill="#ffffff" opacity="0.45"/>
+        <rect x="140" y="210" width="35" height="150" rx="12" fill="#cbd5e1"/>
+        <rect x="325" y="210" width="35" height="150" rx="12" fill="#cbd5e1"/>
+        <defs>
+            <linearGradient id="visorGradient3" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#3b82f6"/>
+                <stop offset="50%" stop-color="#10b981"/>
+                <stop offset="100%" stop-color="#06b6d4"/>
+            </linearGradient>
+        </defs>
+    </svg>
+</div>
+
+<!-- Glassmorphic Navbar -->
+<nav>
+    <div class="logo">Muskan <span>Agarwal</span></div>
+    <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#skills">Skills</a></li>
+    </ul>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero" id="about">
+    <div class="hero-text">
+        <span class="badge"><i class="fas fa-shield-halved"></i> Risk Analyst @ Pixel Truth</span>
+        <h1>Muskan Agarwal</h1>
+        <p>MBA Candidate specializing in Finance & Marketing. Currently managing end-to-end Merchant Onboarding and Fraud Risk Management for partner gateways including <strong>HDFC Bank, Easebuzz, and PhonePe</strong>.</p>
+        <div class="btn-group">
+            <a href="https://linkedin.com/in/muskan-agarwal-58710a343" target="_blank" class="btn btn-primary"><i class="fab fa-linkedin"></i> LinkedIn Profile</a>
+            <a href="mailto:agarwalmuskan148@gmail.com" class="btn btn-secondary"><i class="fas fa-envelope"></i> Email Me</a>
+        </div>
+    </div>
+</section>
+
+<!-- Experience Section -->
+<section class="section" id="experience">
+    <h2 class="section-title">Work Experience</h2>
+    <div class="cards-grid">
+        <div class="card">
+            <div class="card-header">
+                <div>
+                    <div class="card-title">Risk Analyst</div>
+                    <div class="card-subtitle">Pixel Truth</div>
                 </div>
-                <ul>
-                    <li>Manage end-to-end merchant onboarding operations and risk evaluation for <strong>HDFC, Easebuzz, and PhonePe</strong>.</li>
-                    <li>Conduct background verification, KYC compliance checks, and risk assessments to mitigate merchant fraud.</li>
-                    <li>Analyze business models and transaction volume metrics prior to payment gateway activation.</li>
-                    <li>Maintain strict compliance controls while maintaining optimal onboarding Turnaround Time (TAT).</li>
-                </ul>
+                <span class="date-badge">May 2024 - Present</span>
             </div>
+            <ul>
+                <li>Manage end-to-end merchant onboarding operations and risk evaluation for <strong>HDFC, Easebuzz, and PhonePe</strong>.</li>
+                <li>Conduct background verification, KYC compliance checks, and risk assessments to mitigate merchant fraud.</li>
+                <li>Analyze business models and transaction volume metrics prior to payment gateway activation.</li>
+                <li>Maintain strict compliance controls while maintaining optimal onboarding Turnaround Time (TAT).</li>
+            </ul>
+        </div>
 
-            <div class="card">
-                <div class="card-header">
-                    <div>
-                        <div class="card-title">Finance Intern</div>
-                        <div class="card-subtitle">Sanjeev Gaurav & Associates</div>
-                    </div>
-                    <span class="date-badge">May 2023 - Jun 2023</span>
+        <div class="card">
+            <div class="card-header">
+                <div>
+                    <div class="card-title">Finance Intern</div>
+                    <div class="card-subtitle">Sanjeev Gaurav & Associates</div>
                 </div>
-                <ul>
-                    <li>Handled account reconciliation, balance sheet preparation, data feeding, and vouching processes.</li>
-                    <li>Assisted senior auditors in verifying client financial statements and accounting standard compliance.</li>
-                    <li>Performed primary invoice verification to minimize manual documentation errors.</li>
-                </ul>
+                <span class="date-badge">May 2023 - Jun 2023</span>
             </div>
+            <ul>
+                <li>Handled account reconciliation, balance sheet preparation, data feeding, and vouching processes.</li>
+                <li>Assisted senior auditors in verifying client financial statements and accounting standard compliance.</li>
+                <li>Performed primary invoice verification to minimize manual documentation errors.</li>
+            </ul>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Education Section -->
-    <section class="section" id="education">
-        <h2 class="section-title">Education</h2>
-        <div class="cards-grid">
-            <div class="card">
-                <div class="card-header">
-                    <div>
-                        <div class="card-title">MBA (Finance & Marketing)</div>
-                        <div class="card-subtitle">Dayalbagh Educational Institute</div>
-                    </div>
-                    <span class="date-badge">Pursuing</span>
+<!-- Education Section -->
+<section class="section" id="education">
+    <h2 class="section-title">Education</h2>
+    <div class="cards-grid">
+        <div class="card">
+            <div class="card-header">
+                <div>
+                    <div class="card-title">MBA (Finance & Marketing)</div>
+                    <div class="card-subtitle">Dayalbagh Educational Institute</div>
                 </div>
-                <p style="color: var(--text-muted); font-size: 0.95rem;">Specializing in financial modeling, market research, corporate valuation, and strategic brand management.</p>
+                <span class="date-badge">Pursuing</span>
             </div>
+            <p style="color: var(--text-muted); font-size: 0.95rem;">Specializing in financial modeling, market research, corporate valuation, and strategic brand management.</p>
+        </div>
 
-            <div class="card">
-                <div class="card-header">
-                    <div>
-                        <div class="card-title">BBA (Finance)</div>
-                        <div class="card-subtitle">Dayalbagh Educational Institute</div>
-                    </div>
-                    <span class="date-badge">CGPA: 8.2 / 10</span>
+        <div class="card">
+            <div class="card-header">
+                <div>
+                    <div class="card-title">BBA (Finance)</div>
+                    <div class="card-subtitle">Dayalbagh Educational Institute</div>
                 </div>
-                <p style="color: var(--text-muted); font-size: 0.95rem;">Graduated with top academic standing, mastering corporate accounting, managerial economics, and financial statistics.</p>
+                <span class="date-badge">CGPA: 8.2 / 10</span>
             </div>
+            <p style="color: var(--text-muted); font-size: 0.95rem;">Graduated with top academic standing, mastering corporate accounting, managerial economics, and financial statistics.</p>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Projects Section -->
-    <section class="section" id="projects">
-        <h2 class="section-title">Key Projects</h2>
-        <div class="cards-grid">
-            <div class="card">
-                <div class="card-title" style="margin-bottom: 0.5rem;">Alvo - Sustainable Packaging Business</div>
-                <p style="color: var(--text-muted); font-size: 0.95rem;">
-                    Researched eco-friendly packaging models, performed unit-economic financial analysis, and evaluated supply chain risk factors for business feasibility.
-                </p>
-            </div>
-
-            <div class="card">
-                <div class="card-title" style="margin-bottom: 0.5rem;">Brand Loyalty & Consumer Behavior Study</div>
-                <p style="color: var(--text-muted); font-size: 0.95rem;">
-                    Analyzed consumer purchase patterns and brand-switching risks to evaluate the financial impact of customer retention on lifetime value (LTV).
-                </p>
-            </div>
+<!-- Projects Section -->
+<section class="section" id="projects">
+    <h2 class="section-title">Key Projects</h2>
+    <div class="cards-grid">
+        <div class="card">
+            <div class="card-title" style="margin-bottom: 0.5rem;">Alvo - Sustainable Packaging Business</div>
+            <p style="color: var(--text-muted); font-size: 0.95rem;">
+                Researched eco-friendly packaging models, performed unit-economic financial analysis, and evaluated supply chain risk factors for business feasibility.
+            </p>
         </div>
-    </section>
 
-    <!-- Skills Section -->
-    <section class="section" id="skills">
-        <h2 class="section-title">Core Competencies</h2>
-        <div class="skills-container">
-            <div class="skill-tag"><i class="fas fa-shield-halved"></i> Merchant Risk Assessment</div>
-            <div class="skill-tag"><i class="fas fa-user-check"></i> Merchant Onboarding</div>
-            <div class="skill-tag"><i class="fas fa-university"></i> Payment Gateways (HDFC/PhonePe)</div>
-            <div class="skill-tag"><i class="fas fa-chart-line"></i> Financial Analysis</div>
-            <div class="skill-tag"><i class="fas fa-file-invoice-dollar"></i> Account Reconciliation</div>
-            <div class="skill-tag"><i class="fas fa-magnifying-glass"></i> Fraud Mitigation & KYC</div>
-            <div class="skill-tag"><i class="fas fa-lightbulb"></i> Business Strategy</div>
+        <div class="card">
+            <div class="card-title" style="margin-bottom: 0.5rem;">Brand Loyalty & Consumer Behavior Study</div>
+            <p style="color: var(--text-muted); font-size: 0.95rem;">
+                Analyzed consumer purchase patterns and brand-switching risks to evaluate the financial impact of customer retention on lifetime value (LTV).
+            </p>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-socials">
-            <a href="https://linkedin.com/in/muskan-agarwal-58710a343" target="_blank"><i class="fab fa-linkedin"></i></a>
-            <a href="mailto:agarwalmuskan148@gmail.com"><i class="fas fa-envelope"></i></a>
-        </div>
-        <p style="color: var(--text-muted); font-size: 0.9rem;">&copy; 2026 Muskan Agarwal. All Rights Reserved.</p>
-    </footer>
+<!-- Skills Section -->
+<section class="section" id="skills">
+    <h2 class="section-title">Core Competencies</h2>
+    <div class="skills-container">
+        <div class="skill-tag"><i class="fas fa-shield-halved"></i> Merchant Risk Assessment</div>
+        <div class="skill-tag"><i class="fas fa-user-check"></i> Merchant Onboarding</div>
+        <div class="skill-tag"><i class="fas fa-university"></i> Payment Gateways (HDFC/PhonePe)</div>
+        <div class="skill-tag"><i class="fas fa-chart-line"></i> Financial Analysis</div>
+        <div class="skill-tag"><i class="fas fa-file-invoice-dollar"></i> Account Reconciliation</div>
+        <div class="skill-tag"><i class="fas fa-magnifying-glass"></i> Fraud Mitigation & KYC</div>
+        <div class="skill-tag"><i class="fas fa-lightbulb"></i> Business Strategy</div>
+    </div>
+</section>
 
-    <!-- Canvas Animation & 3D Tilt Script -->
-    <script>
-        // Interactive Canvas Background
-        const canvas = document.getElementById('bg-canvas');
-        const ctx = canvas.getContext('2d');
-        let particles = [];
+<!-- Footer -->
+<footer>
+    <div class="footer-socials">
+        <a href="https://linkedin.com/in/muskan-agarwal-58710a343" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a href="mailto:agarwalmuskan148@gmail.com"><i class="fas fa-envelope"></i></a>
+    </div>
+    <p style="color: var(--text-muted); font-size: 0.9rem;">&copy; 2026 Muskan Agarwal. All Rights Reserved.</p>
+</footer>
 
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+<!-- Space Animation Script -->
+<script>
+    const canvas = document.getElementById('space-canvas');
+    const ctx = canvas.getContext('2d');
+
+    let width, height;
+    let stars = [];
+    let shootingStars = [];
+    let mouse = { x: null, y: null, radius: 120 };
+
+    window.addEventListener('mousemove', (e) => {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+    });
+
+    function resizeCanvas() {
+        width = window.innerWidth;
+        height = window.innerHeight;
+        canvas.width = width;
+        canvas.height = height;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    class Star {
+        constructor() {
+            this.x = Math.random() * width;
+            this.y = Math.random() * height;
+            this.size = Math.random() * 2 + 0.5;
+            this.baseAlpha = Math.random() * 0.7 + 0.3;
+            this.alpha = this.baseAlpha;
+            this.speedX = (Math.random() - 0.5) * 0.3;
+            this.speedY = (Math.random() - 0.5) * 0.3;
+            this.color = Math.random() > 0.4 ? '#3b82f6' : (Math.random() > 0.5 ? '#8b5cf6' : '#06b6d4');
         }
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
 
-        class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 2 + 0.5;
-                this.speedX = (Math.random() - 0.5) * 0.5;
-                this.speedY = (Math.random() - 0.5) * 0.5;
-                this.color = `rgba(${Math.random() > 0.5 ? '59, 130, 246' : '139, 92, 246'}, ${Math.random() * 0.4 + 0.1})`;
+        update() {
+            this.x += this.speedX;
+            this.y += this.speedY;
+
+            if (this.x < 0) this.x = width;
+            if (this.x > width) this.x = 0;
+            if (this.y < 0) this.y = height;
+            if (this.y > height) this.y = 0;
+
+            if (mouse.x && mouse.y) {
+                let dx = mouse.x - this.x;
+                let dy = mouse.y - this.y;
+                let distance = Math.sqrt(dx * dx + dy * dy);
+                if (distance < mouse.radius) {
+                    this.alpha = 1;
+                } else {
+                    this.alpha = this.baseAlpha;
+                }
             }
-            update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-                if (this.x > canvas.width) this.x = 0;
-                if (this.x < 0) this.x = canvas.width;
-                if (this.y > canvas.height) this.y = 0;
-                if (this.y < 0) this.y = canvas.height;
+        }
+
+        draw() {
+            ctx.fillStyle = this.color;
+            ctx.globalAlpha = this.alpha;
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.globalAlpha = 1;
+        }
+    }
+
+    class ShootingStar {
+        constructor() {
+            this.reset();
+        }
+
+        reset() {
+            this.x = Math.random() * width;
+            this.y = Math.random() * (height / 2);
+            this.len = Math.random() * 80 + 40;
+            this.speed = Math.random() * 10 + 6;
+            this.size = Math.random() * 1 + 0.5;
+            this.waitTime = Date.now() + Math.random() * 3000 + 1000;
+            this.active = false;
+        }
+
+        update() {
+            if (!this.active) {
+                if (Date.now() >= this.waitTime) {
+                    this.active = true;
+                }
+                return;
             }
-            draw() {
-                ctx.fillStyle = this.color;
+
+            this.x -= this.speed;
+            this.y += this.speed;
+
+            if (this.x < -100 || this.y > height + 100) {
+                this.reset();
+            }
+        }
+
+        draw() {
+            if (!this.active) return;
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.8)';
+            ctx.lineWidth = this.size;
+            ctx.beginPath();
+            ctx.moveTo(this.x, this.y);
+            ctx.lineTo(this.x + this.len, this.y - this.len);
+            ctx.stroke();
+        }
+    }
+
+    for (let i = 0; i < 150; i++) {
+        stars.push(new Star());
+    }
+
+    for (let i = 0; i < 3; i++) {
+        shootingStars.push(new ShootingStar());
+    }
+
+    function connectConstellations() {
+        if (!mouse.x || !mouse.y) return;
+        for (let a = 0; a < stars.length; a++) {
+            let dx = mouse.x - stars[a].x;
+            let dy = mouse.y - stars[a].y;
+            let distance = Math.sqrt(dx * dx + dy * dy);
+
+            if (distance < mouse.radius) {
+                ctx.strokeStyle = 'rgba(6, 182, 212, ' + (1 - distance / mouse.radius) * 0.4 + ')';
+                ctx.lineWidth = 0.8;
                 ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
+                ctx.moveTo(stars[a].x, stars[a].y);
+                ctx.lineTo(mouse.x, mouse.y);
+                ctx.stroke();
             }
         }
+    }
 
-        for (let i = 0; i < 60; i++) {
-            particles.push(new Particle());
-        }
+    function renderSpace() {
+        ctx.clearRect(0, 0, width, height);
 
-        function animateCanvas() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles.forEach(p => {
-                p.update();
-                p.draw();
-            });
-            requestAnimationFrame(animateCanvas);
-        }
-        animateCanvas();
-
-        // 3D Tilt Effect on Photo Card
-        const heroCard = document.getElementById('heroCard');
-        document.addEventListener('mousemove', (e) => {
-            if (!heroCard) return;
-            const x = (window.innerWidth / 2 - e.pageX) / 30;
-            const y = (window.innerHeight / 2 - e.pageY) / 30;
-            heroCard.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
+        stars.forEach(star => {
+            star.update();
+            star.draw();
         });
-    </script>
+
+        connectConstellations();
+
+        shootingStars.forEach(sStar => {
+            sStar.update();
+            sStar.draw();
+        });
+
+        requestAnimationFrame(renderSpace);
+    }
+
+    renderSpace();
+</script>
 </body>
 </html>
