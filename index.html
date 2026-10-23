@@ -1,650 +1,649 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Muskan Agarwal | Risk Analyst & MBA Candidate</title>
-<!-- Google Fonts & FontAwesome -->
+
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
 <style>
-    :root {
-        --bg-main: #030712;
-        --accent-blue: #3b82f6;
-        --accent-purple: #8b5cf6;
-        --accent-cyan: #06b6d4;
-        --accent-pink: #ec4899;
-        --accent-glow: rgba(59, 130, 246, 0.35);
-        --card-bg: rgba(15, 23, 42, 0.65);
-        --card-border: rgba(255, 255, 255, 0.12);
-        --text-light: #f8fafc;
-        --text-muted: #94a3b8;
+:root {
+    --bg-main: #f8fafc;
+    --bg-card: rgba(255,255,255,.82);
+    --card-border: rgba(226,232,240,.8);
+    --card-border-hover: rgba(99,102,241,.35);
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-muted: #64748b;
+    --accent-indigo: #4f46e5;
+    --accent-blue: #2563eb;
+    --accent-cyan: #0891b2;
+    --accent-violet: #7c3aed;
+    --shadow-sm: 0 4px 20px rgba(148,163,184,.1);
+    --shadow-md: 0 12px 35px rgba(148,163,184,.15);
+    --shadow-hover: 0 20px 45px rgba(99,102,241,.12);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px;
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    line-height: 1.8;
+    overflow-x: hidden;
+    position: relative;
+}
+
+::selection {
+    background: rgba(99,102,241,.2);
+    color: #1e1b4b;
+}
+
+.ambient-glow {
+    position: fixed;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    filter: blur(140px);
+    opacity: .55;
+    z-index: -4;
+    pointer-events: none;
+}
+
+.glow-1 {
+    top: -150px;
+    left: -150px;
+    background: radial-gradient(circle,#e0e7ff,#c7d2fe,transparent);
+}
+
+.glow-2 {
+    bottom: -150px;
+    right: -150px;
+    background: radial-gradient(circle,#e0f2fe,#ddd6fe,transparent);
+}
+
+.glow-3 {
+    top: 40%;
+    left: 30%;
+    width: 450px;
+    height: 450px;
+    background: radial-gradient(circle,#ccfbf1,#e0e7ff,transparent);
+    opacity: .4;
+}
+
+#space-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -3;
+    pointer-events: none;
+    opacity: .85;
+}
+
+/* Navigation */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 1.1rem 8%;
+    background: rgba(255,255,255,.82);
+    border-bottom: 1px solid rgba(226,232,240,.8);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 4px 25px rgba(148,163,184,.08);
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.35rem;
+    font-weight: 800;
+    letter-spacing: -.5px;
+    color: var(--text-primary);
+}
+
+.logo span {
+    background: linear-gradient(120deg,var(--accent-indigo),var(--accent-cyan));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-size: .9rem;
+    font-weight: 600;
+    position: relative;
+    transition: color .25s ease;
+}
+
+.nav-links a:hover {
+    color: var(--accent-indigo);
+}
+
+/* Hero Section */
+.hero {
+    min-height: 92vh;
+    padding: 12rem 8% 6rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1300px;
+    margin: 0 auto;
+    gap: 3rem;
+}
+
+.hero-text {
+    position: relative;
+    z-index: 1;
+    flex: 1.2;
+}
+
+.badge {
+    background: rgba(79,70,229,.08);
+    border: 1px solid rgba(79,70,229,.2);
+    color: var(--accent-indigo);
+    padding: .55rem 1rem;
+    border-radius: 30px;
+    font-size: .82rem;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: .6rem;
+    margin-bottom: 1.5rem;
+}
+
+.hero-text h1 {
+    font-size: clamp(2.8rem,5.5vw,4.5rem);
+    line-height: 1.1;
+    letter-spacing: -2px;
+    font-weight: 800;
+    margin-bottom: 1.4rem;
+    color: var(--text-primary);
+}
+
+.hero-text h1 span {
+    background: linear-gradient(120deg,var(--accent-indigo),var(--accent-violet));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-text p {
+    max-width: 680px;
+    font-size: 1rem;
+    line-height: 1.9;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+}
+
+.hero-text p strong {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+/* Buttons */
+.btn-group {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.btn {
+    border-radius: 11px;
+    padding: .85rem 1.35rem;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: .88rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .65rem;
+    transition: transform .25s ease,box-shadow .25s ease,
+                border-color .25s ease,background .25s ease;
+}
+
+.btn-primary {
+    background: linear-gradient(120deg,var(--accent-indigo),var(--accent-blue));
+    color: #fff;
+    box-shadow: 0 8px 25px rgba(79,70,229,.25);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 30px rgba(79,70,229,.35);
+}
+
+.btn-secondary {
+    background: #fff;
+    color: var(--text-primary);
+    border: 1px solid var(--card-border);
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-secondary:hover {
+    border-color: var(--accent-indigo);
+    color: var(--accent-indigo);
+    background: #f8fafc;
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+
+/* Sections */
+.section {
+    padding: 5rem 8%;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+.section-title {
+    font-size: clamp(1.9rem,3.8vw,2.5rem);
+    font-weight: 800;
+    letter-spacing: -1px;
+    text-align: center;
+    margin-bottom: 3rem;
+    color: var(--text-primary);
+}
+
+.section-title::after {
+    content: "";
+    display: block;
+    margin: .7rem auto 0;
+    width: 50px;
+    height: 3px;
+    border-radius: 10px;
+    background: linear-gradient(90deg,var(--accent-indigo),var(--accent-cyan));
+}
+
+/* Cards */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(min(100%,320px),1fr));
+    gap: 1.5rem;
+}
+
+.card {
+    background: var(--bg-card);
+    border: 1px solid var(--card-border);
+    border-radius: 18px;
+    padding: 1.8rem;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: var(--shadow-sm);
+    transition: transform .3s ease,border-color .3s ease,box-shadow .3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    border-color: var(--card-border-hover);
+    box-shadow: var(--shadow-hover);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: .8rem;
+    margin-bottom: 1rem;
+}
+
+.card-title {
+    font-size: 1.12rem;
+    font-weight: 700;
+    letter-spacing: -.3px;
+    color: var(--text-primary);
+}
+
+.card-subtitle {
+    color: var(--accent-indigo);
+    font-size: .88rem;
+    font-weight: 600;
+    margin-top: .2rem;
+}
+
+.date-badge {
+    white-space: nowrap;
+    background: rgba(241,245,249,.9);
+    border: 1px solid rgba(203,213,225,.8);
+    border-radius: 8px;
+    padding: .3rem .6rem;
+    font-size: .73rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.card p {
+    color: var(--text-secondary);
+    font-size: .9rem;
+    line-height: 1.8;
+}
+
+.card ul {
+    padding-left: 1.1rem;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    font-size: .9rem;
+}
+
+.card ul li {
+    margin-bottom: .7rem;
+}
+
+.card ul li::marker {
+    color: var(--accent-indigo);
+}
+
+.card > a {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    margin-top: 1rem;
+    color: var(--accent-indigo);
+    text-decoration: none;
+    overflow-wrap: anywhere;
+    font-weight: 600;
+    font-size: .88rem;
+    transition: color .2s ease,transform .2s ease;
+}
+
+.card > a:hover {
+    color: var(--accent-blue);
+    transform: translateX(3px);
+}
+
+/* Skill Tags */
+.skills-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .8rem;
+    justify-content: center;
+    max-width: 1050px;
+    margin: 0 auto;
+}
+
+.skill-tag {
+    background: rgba(255,255,255,.9);
+    border: 1px solid rgba(226,232,240,.9);
+    border-radius: 10px;
+    padding: .7rem 1rem;
+    font-size: .85rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    box-shadow: 0 4px 15px rgba(148,163,184,.08);
+    display: inline-flex;
+    align-items: center;
+    gap: .6rem;
+    transition: transform .25s ease,background .25s ease,
+                border-color .25s ease,box-shadow .25s ease,color .25s ease;
+}
+
+.skill-tag i {
+    color: var(--accent-indigo);
+}
+
+.skill-tag:hover {
+    transform: translateY(-3px);
+    background: #fff;
+    border-color: rgba(79,70,229,.4);
+    color: var(--accent-indigo);
+    box-shadow: 0 8px 25px rgba(79,70,229,.12);
+}
+
+/* Footer */
+footer {
+    background: rgba(255,255,255,.9);
+    border-top: 1px solid rgba(226,232,240,.9);
+    padding: 3rem 8%;
+    text-align: center;
+    margin-top: 4rem;
+}
+
+.footer-socials {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1.2rem;
+}
+
+.footer-socials a {
+    width: 44px;
+    height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(226,232,240,.9);
+    border-radius: 11px;
+    background: #fff;
+    color: var(--text-secondary);
+    font-size: 1.15rem;
+    box-shadow: var(--shadow-sm);
+    transition: transform .25s ease,border-color .25s ease,
+                color .25s ease,box-shadow .25s ease;
+}
+
+.footer-socials a:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent-indigo);
+    color: var(--accent-indigo);
+    box-shadow: var(--shadow-md);
+}
+
+a:focus-visible {
+    outline: 2px solid var(--accent-indigo);
+    outline-offset: 4px;
+}
+
+/* Scroll reveal animations */
+.reveal {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity .7s ease,transform .7s ease;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,*::before,*::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
     }
 
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: 'Plus Jakarta Sans', sans-serif;
-        scroll-behavior: smooth;
+    .reveal {
+        opacity: 1;
+        transform: none;
     }
+}
 
-    body {
-        background-color: var(--bg-main);
-        color: var(--text-light);
-        line-height: 1.6;
-        overflow-x: hidden;
-        position: relative;
-    }
-
-    /* Background Ambient Glowing Orbs */
-    .ambient-glow {
-        position: fixed;
-        width: 600px;
-        height: 600px;
-        border-radius: 50%;
-        filter: blur(140px);
-        opacity: 0.25;
-        z-index: -4;
-        pointer-events: none;
-    }
-
-    .glow-1 {
-        top: -100px;
-        left: -100px;
-        background: radial-gradient(circle, var(--accent-blue), var(--accent-purple));
-    }
-
-    .glow-2 {
-        bottom: -100px;
-        right: -100px;
-        background: radial-gradient(circle, var(--accent-cyan), var(--accent-pink));
-    }
-
-    /* Dynamic Space Canvas */
-    #space-canvas {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        z-index: -3;
-        pointer-events: none;
-    }
-
-    /* Moon Element */
-    .moon-container {
-        position: fixed;
-        top: 8%;
-        left: 6%;
-        width: 220px;
-        height: 220px;
-        z-index: -2;
-        pointer-events: none;
-        animation: moonPulse 8s ease-in-out infinite alternate;
-        filter: drop-shadow(0 0 40px rgba(56, 189, 248, 0.3));
-    }
-
-    .moon-svg {
-        width: 100%;
-        height: 100%;
-    }
-
-    @keyframes moonPulse {
-        0% { transform: translateY(0px) scale(1); filter: drop-shadow(0 0 30px rgba(56, 189, 248, 0.25)); }
-        100% { transform: translateY(-12px) scale(1.04); filter: drop-shadow(0 0 50px rgba(139, 92, 246, 0.45)); }
-    }
-
-    /* Astronauts Base Styles */
-    .astronaut-container {
-        position: fixed;
-        z-index: -1;
-        pointer-events: none;
-        filter: drop-shadow(0 0 20px rgba(6, 182, 212, 0.45));
-    }
-
-    .astronaut-svg {
-        width: 100%;
-        height: auto;
-    }
-
-    .astro-1 {
-        top: 16%;
-        right: 5%;
-        width: 160px;
-        animation: floatAstro1 11s ease-in-out infinite alternate;
-    }
-    .astro-1 .astronaut-svg {
-        animation: rotateAstro1 16s ease-in-out infinite alternate;
-    }
-
-    .astro-2 {
-        top: 48%;
-        left: 3%;
-        width: 110px;
-        opacity: 0.85;
-        animation: floatAstro2 14s ease-in-out infinite alternate;
-    }
-    .astro-2 .astronaut-svg {
-        animation: rotateAstro2 20s ease-in-out infinite alternate;
-    }
-
-    .astro-3 {
-        bottom: 12%;
-        right: 10%;
-        width: 90px;
-        opacity: 0.75;
-        animation: floatAstro3 18s ease-in-out infinite alternate;
-    }
-    .astro-3 .astronaut-svg {
-        animation: rotateAstro3 22s ease-in-out infinite alternate;
-    }
-
-    @keyframes floatAstro1 {
-        0% { transform: translateY(0px) translateX(0px); }
-        50% { transform: translateY(-35px) translateX(-20px); }
-        100% { transform: translateY(25px) translateX(-10px); }
-    }
-    @keyframes rotateAstro1 {
-        0% { transform: rotate(-5deg); }
-        50% { transform: rotate(15deg); }
-        100% { transform: rotate(-5deg); }
-    }
-
-    @keyframes floatAstro2 {
-        0% { transform: translateY(0px) translateX(0px); }
-        50% { transform: translateY(40px) translateX(25px); }
-        100% { transform: translateY(-20px) translateX(10px); }
-    }
-    @keyframes rotateAstro2 {
-        0% { transform: rotate(10deg); }
-        50% { transform: rotate(-18deg); }
-        100% { transform: rotate(10deg); }
-    }
-
-    @keyframes floatAstro3 {
-        0% { transform: translateY(0px) translateX(0px); }
-        50% { transform: translateY(-30px) translateX(-25px); }
-        100% { transform: translateY(20px) translateX(15px); }
-    }
-    @keyframes rotateAstro3 {
-        0% { transform: rotate(-15deg); }
-        50% { transform: rotate(25deg); }
-        100% { transform: rotate(-15deg); }
-    }
-
-    /* Glassmorphic Navbar */
+/* Responsive */
+@media (max-width: 900px) {
     nav {
-        position: fixed;
-        top: 0;
-        width: 100%;
-        background: rgba(3, 7, 18, 0.75);
-        backdrop-filter: blur(25px);
-        -webkit-backdrop-filter: blur(25px);
-        border-bottom: 1px solid var(--card-border);
-        z-index: 1000;
-        padding: 1.2rem 8%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .logo {
-        font-size: 1.5rem;
-        font-weight: 800;
-        letter-spacing: -0.5px;
-        color: var(--text-light);
-    }
-
-    .logo span {
-        background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+        padding: 1rem 6%;
     }
 
     .nav-links {
-        display: flex;
-        list-style: none;
-        gap: 2.5rem;
+        display: none;
     }
 
-    .nav-links a {
-        text-decoration: none;
-        color: var(--text-muted);
-        font-weight: 500;
-        font-size: 0.95rem;
-        transition: all 0.3s ease;
-        position: relative;
-    }
-
-    .nav-links a:hover {
-        color: var(--text-light);
-        text-shadow: 0 0 15px var(--accent-cyan);
-    }
-
-    /* Hero Section */
     .hero {
-        padding: 12rem 8% 6rem;
-        min-height: 92vh;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        max-width: 1300px;
-        margin: 0 auto;
-        gap: 4rem;
-    }
-
-    .hero-text { flex: 1.2; }
-
-    .badge {
-        background: rgba(6, 182, 212, 0.1);
-        border: 1px solid rgba(6, 182, 212, 0.35);
-        color: var(--accent-cyan);
-        padding: 0.6rem 1.4rem;
-        border-radius: 30px;
-        font-size: 0.85rem;
-        font-weight: 600;
-        display: inline-flex;
-        align-items: center;
-        gap: 0.6rem;
-        margin-bottom: 1.5rem;
-        box-shadow: 0 0 25px rgba(6, 182, 212, 0.2);
-        animation: pulseBadge 3s infinite alternate;
-    }
-
-    @keyframes pulseBadge {
-        0% { box-shadow: 0 0 15px rgba(6, 182, 212, 0.2); }
-        100% { box-shadow: 0 0 30px rgba(139, 92, 246, 0.4); }
+        min-height: auto;
+        padding: 9rem 6% 4rem;
+        flex-direction: column;
+        text-align: center;
+        gap: 2rem;
     }
 
     .hero-text h1 {
-        font-size: 4rem;
-        font-weight: 800;
-        line-height: 1.15;
-        margin-bottom: 1.2rem;
-        background: linear-gradient(135deg, #ffffff 30%, #94a3b8 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+        font-size: clamp(2.5rem,8vw,3.6rem);
+        letter-spacing: -1px;
     }
 
     .hero-text p {
-        font-size: 1.18rem;
-        color: var(--text-muted);
-        margin-bottom: 2.5rem;
-        max-width: 620px;
+        font-size: .95rem;
     }
 
     .btn-group {
-        display: flex;
-        gap: 1.2rem;
-        flex-wrap: wrap;
+        justify-content: center;
     }
 
-    .btn {
-        padding: 1rem 2.2rem;
-        border-radius: 14px;
-        text-decoration: none;
-        font-weight: 600;
-        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        display: inline-flex;
-        align-items: center;
-        gap: 0.7rem;
-        font-size: 0.95rem;
-    }
-
-    .btn-primary {
-        background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-purple) 100%);
-        color: var(--text-light);
-        box-shadow: 0 10px 30px -5px rgba(59, 130, 246, 0.5);
-    }
-
-    .btn-primary:hover {
-        transform: translateY(-4px) scale(1.03);
-        box-shadow: 0 15px 35px -5px rgba(139, 92, 246, 0.6);
-    }
-
-    .btn-secondary {
-        border: 1px solid var(--card-border);
-        color: var(--text-light);
-        background: rgba(255, 255, 255, 0.04);
-        backdrop-filter: blur(12px);
-    }
-
-    .btn-secondary:hover {
-        background: rgba(255, 255, 255, 0.08);
-        transform: translateY(-4px);
-        border-color: rgba(255, 255, 255, 0.25);
-    }
-
-    /* Section Headers */
     .section {
-        padding: 6rem 8%;
-        max-width: 1300px;
-        margin: 0 auto;
+        padding: 4rem 6%;
     }
 
     .section-title {
-        text-align: center;
-        font-size: 2.4rem;
-        font-weight: 800;
-        color: var(--text-light);
-        margin-bottom: 3.5rem;
-        position: relative;
-    }
-
-    .section-title::after {
-        content: '';
-        width: 70px;
-        height: 4px;
-        background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
-        display: block;
-        margin: 0.6rem auto 0;
-        border-radius: 2px;
-        box-shadow: 0 0 12px var(--accent-cyan);
-    }
-
-    /* Grid & Cards */
-    .cards-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
-        gap: 2.2rem;
+        margin-bottom: 2.3rem;
     }
 
     .card {
-        background: var(--card-bg);
-        border: 1px solid var(--card-border);
-        padding: 2.3rem;
-        border-radius: 24px;
-        backdrop-filter: blur(20px);
-        box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.6);
-        transition: all 0.4s ease;
-        position: relative;
-        overflow: hidden;
+        padding: 1.5rem;
     }
 
-    .card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
+    .cards-grid {
+        gap: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        font-size: 1.2rem;
+    }
+
+    .hero {
+        padding-top: 8rem;
+    }
+
+    .badge {
+        font-size: .75rem;
+        padding: .5rem .8rem;
+    }
+
+    .btn-group {
+        gap: .7rem;
+    }
+
+    .btn {
         width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.06), transparent);
-        transition: 0.6s;
-    }
-
-    .card:hover::before {
-        left: 100%;
-    }
-
-    .card:hover {
-        transform: translateY(-8px);
-        border-color: rgba(59, 130, 246, 0.5);
-        box-shadow: 0 20px 45px -10px var(--accent-glow);
+        padding: .8rem 1rem;
+        font-size: .85rem;
     }
 
     .card-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        margin-bottom: 1.2rem;
-    }
-
-    .card-title {
-        font-size: 1.35rem;
-        font-weight: 700;
-        color: var(--text-light);
-    }
-
-    .card-subtitle {
-        color: var(--accent-cyan);
-        font-weight: 600;
-        font-size: 0.95rem;
-        margin-top: 0.2rem;
+        flex-wrap: wrap;
+        gap: .6rem;
     }
 
     .date-badge {
-        font-size: 0.8rem;
-        color: var(--text-muted);
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid var(--card-border);
-        padding: 0.4rem 0.9rem;
-        border-radius: 20px;
-    }
-
-    .card ul {
-        padding-left: 1.2rem;
-        color: var(--text-muted);
-        font-size: 0.95rem;
-    }
-
-    .card ul li { margin-bottom: 0.6rem; }
-
-    /* Modernized Skill Chips Grid */
-    .skills-container {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 1rem;
-        justify-content: center;
-        max-width: 1000px;
-        margin: 0 auto;
+        white-space: normal;
     }
 
     .skill-tag {
-        background: rgba(15, 23, 42, 0.8);
-        border: 1px solid var(--card-border);
-        padding: 0.85rem 1.6rem;
-        border-radius: 30px;
-        font-weight: 600;
-        font-size: 0.92rem;
-        color: var(--text-light);
-        backdrop-filter: blur(14px);
-        transition: all 0.3s ease;
-        display: inline-flex;
-        align-items: center;
-        gap: 0.7rem;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        padding: .65rem .85rem;
+        font-size: .8rem;
     }
-
-    .skill-tag i { color: var(--accent-cyan); transition: transform 0.3s ease; }
-
-    .skill-tag:hover {
-        transform: translateY(-5px) scale(1.04);
-        border-color: var(--accent-cyan);
-        box-shadow: 0 10px 25px -5px rgba(6, 182, 212, 0.4);
-        color: #ffffff;
-        background: rgba(6, 182, 212, 0.12);
-    }
-
-    .skill-tag:hover i {
-        transform: rotate(12deg) scale(1.15);
-        color: var(--accent-purple);
-    }
-
-    /* Footer */
-    footer {
-        background: rgba(3, 7, 18, 0.95);
-        border-top: 1px solid var(--card-border);
-        text-align: center;
-        padding: 3rem 8%;
-        margin-top: 5rem;
-    }
-
-    .footer-socials {
-        display: flex;
-        justify-content: center;
-        gap: 1.8rem;
-        margin-bottom: 1.5rem;
-    }
-
-    .footer-socials a {
-        color: var(--text-muted);
-        font-size: 1.6rem;
-        transition: all 0.3s ease;
-    }
-
-    .footer-socials a:hover {
-        color: var(--accent-cyan);
-        transform: translateY(-4px);
-    }
-
-    /* Responsive */
-    @media (max-width: 900px) {
-        .hero { flex-direction: column; text-align: center; padding-top: 9rem; gap: 3rem;}
-        .hero-text h1 { font-size: 2.8rem; }
-        .nav-links { display: none; }
-        .btn-group { justify-content: center; }
-        .moon-container { width: 130px; height: 130px; left: 2%; top: 10%; }
-        .astro-1 { width: 90px; right: 2%; top: 12%; }
-        .astro-2 { width: 75px; left: 1%; top: 50%; }
-        .astro-3 { display: none; }
-    }
+}
 </style>
 </head>
+
 <body>
 
 <div class="ambient-glow glow-1"></div>
 <div class="ambient-glow glow-2"></div>
+<div class="ambient-glow glow-3"></div>
 
-<!-- Dynamic Space Canvas -->
 <canvas id="space-canvas"></canvas>
 
-<!-- Vector Moon Element -->
-<div class="moon-container">
-    <svg class="moon-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="100" cy="100" r="95" fill="url(#moonGlowGradient)" opacity="0.25"/>
-        <circle cx="100" cy="100" r="80" fill="url(#moonBodyGradient)"/>
-        
-        <circle cx="70" cy="65" r="14" fill="#94a3b8" opacity="0.35"/>
-        <circle cx="67" cy="63" r="12" fill="#64748b" opacity="0.3"/>
-        
-        <circle cx="130" cy="85" r="18" fill="#94a3b8" opacity="0.3"/>
-        <circle cx="127" cy="83" r="15" fill="#64748b" opacity="0.25"/>
-
-        <circle cx="85" cy="135" r="22" fill="#94a3b8" opacity="0.35"/>
-        <circle cx="82" cy="132" r="18" fill="#64748b" opacity="0.28"/>
-
-        <circle cx="135" cy="140" r="10" fill="#94a3b8" opacity="0.25"/>
-        <circle cx="50" cy="110" r="8" fill="#94a3b8" opacity="0.2"/>
-
-        <path d="M100,20 A80,80 0 0,0 180,100 A80,80 0 0,1 100,20 Z" fill="#02040a" opacity="0.25"/>
-
-        <defs>
-            <radialGradient id="moonBodyGradient" cx="35%" cy="35%" r="65%">
-                <stop offset="0%" stop-color="#ffffff"/>
-                <stop offset="50%" stop-color="#e2e8f0"/>
-                <stop offset="85%" stop-color="#cbd5e1"/>
-                <stop offset="100%" stop-color="#94a3b8"/>
-            </radialGradient>
-            <radialGradient id="moonGlowGradient" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stop-color="#f0f9ff"/>
-                <stop offset="70%" stop-color="#38bdf8"/>
-                <stop offset="100%" stop-color="#02040a"/>
-            </radialGradient>
-        </defs>
-    </svg>
-</div>
-
-<!-- Astronaut 1 (Top Right) -->
-<div class="astronaut-container astro-1">
-    <svg class="astronaut-svg" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="250" cy="200" r="110" fill="url(#visorGradient1)" opacity="0.15"/>
-        <path d="M180,260 C180,200 320,200 320,260 L330,400 C330,430 300,450 250,450 C200,450 170,430 170,400 Z" fill="#e2e8f0"/>
-        <rect x="215" y="270" width="70" height="50" rx="10" fill="#0f172a" stroke="#06b6d4" stroke-width="3"/>
-        <circle cx="235" cy="295" r="6" fill="#3b82f6"/>
-        <circle cx="255" cy="295" r="6" fill="#8b5cf6"/>
-        <circle cx="275" cy="295" r="6" fill="#06b6d4"/>
-        <circle cx="250" cy="180" r="85" fill="#f8fafc" stroke="#cbd5e1" stroke-width="6"/>
-        <ellipse cx="250" cy="180" rx="68" ry="52" fill="url(#visorGradient1)"/>
-        <path d="M210,150 Q250,135 285,150 A52 52 0 0 1 210,150 Z" fill="#ffffff" opacity="0.45"/>
-        <rect x="140" y="210" width="35" height="150" rx="12" fill="#cbd5e1"/>
-        <rect x="325" y="210" width="35" height="150" rx="12" fill="#cbd5e1"/>
-        <defs>
-            <linearGradient id="visorGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#06b6d4"/>
-                <stop offset="50%" stop-color="#3b82f6"/>
-                <stop offset="100%" stop-color="#8b5cf6"/>
-            </linearGradient>
-        </defs>
-    </svg>
-</div>
-
-<!-- Astronaut 2 (Middle Left) -->
-<div class="astronaut-container astro-2">
-    <svg class="astronaut-svg" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="250" cy="200" r="110" fill="url(#visorGradient2)" opacity="0.15"/>
-        <path d="M180,260 C180,200 320,200 320,260 L330,400 C330,430 300,450 250,450 C200,450 170,430 170,400 Z" fill="#cbd5e1"/>
-        <rect x="215" y="270" width="70" height="50" rx="10" fill="#0f172a" stroke="#8b5cf6" stroke-width="3"/>
-        <circle cx="235" cy="295" r="6" fill="#ec4899"/>
-        <circle cx="255" cy="295" r="6" fill="#8b5cf6"/>
-        <circle cx="275" cy="295" r="6" fill="#3b82f6"/>
-        <circle cx="250" cy="180" r="85" fill="#f1f5f9" stroke="#94a3b8" stroke-width="6"/>
-        <ellipse cx="250" cy="180" rx="68" ry="52" fill="url(#visorGradient2)"/>
-        <path d="M210,150 Q250,135 285,150 A52 52 0 0 1 210,150 Z" fill="#ffffff" opacity="0.45"/>
-        <rect x="140" y="210" width="35" height="150" rx="12" fill="#94a3b8"/>
-        <rect x="325" y="210" width="35" height="150" rx="12" fill="#94a3b8"/>
-        <defs>
-            <linearGradient id="visorGradient2" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#8b5cf6"/>
-                <stop offset="50%" stop-color="#ec4899"/>
-                <stop offset="100%" stop-color="#3b82f6"/>
-            </linearGradient>
-        </defs>
-    </svg>
-</div>
-
-<!-- Astronaut 3 (Bottom Right) -->
-<div class="astronaut-container astro-3">
-    <svg class="astronaut-svg" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="250" cy="200" r="110" fill="url(#visorGradient3)" opacity="0.15"/>
-        <path d="M180,260 C180,200 320,200 320,260 L330,400 C330,430 300,450 250,450 C200,450 170,430 170,400 Z" fill="#e2e8f0"/>
-        <rect x="215" y="270" width="70" height="50" rx="10" fill="#0f172a" stroke="#3b82f6" stroke-width="3"/>
-        <circle cx="235" cy="295" r="6" fill="#06b6d4"/>
-        <circle cx="255" cy="295" r="6" fill="#3b82f6"/>
-        <circle cx="275" cy="295" r="6" fill="#10b981"/>
-        <circle cx="250" cy="180" r="85" fill="#f8fafc" stroke="#cbd5e1" stroke-width="6"/>
-        <ellipse cx="250" cy="180" rx="68" ry="52" fill="url(#visorGradient3)"/>
-        <path d="M210,150 Q250,135 285,150 A52 52 0 0 1 210,150 Z" fill="#ffffff" opacity="0.45"/>
-        <rect x="140" y="210" width="35" height="150" rx="12" fill="#cbd5e1"/>
-        <rect x="325" y="210" width="35" height="150" rx="12" fill="#cbd5e1"/>
-        <defs>
-            <linearGradient id="visorGradient3" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#3b82f6"/>
-                <stop offset="50%" stop-color="#10b981"/>
-                <stop offset="100%" stop-color="#06b6d4"/>
-            </linearGradient>
-        </defs>
-    </svg>
-</div>
-
-<!-- Glassmorphic Navbar -->
+<!-- Navigation -->
 <nav>
     <div class="logo">Muskan <span>Agarwal</span></div>
+
     <ul class="nav-links">
         <li><a href="#about">About</a></li>
         <li><a href="#experience">Experience</a></li>
         <li><a href="#education">Education</a></li>
         <li><a href="#projects">Projects</a></li>
         <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
     </ul>
 </nav>
 
 <!-- Hero Section -->
 <section class="hero" id="about">
     <div class="hero-text">
-        <span class="badge"><i class="fas fa-shield-halved"></i> Risk Analyst @ Pixel Truth</span>
-        <h1>Muskan Agarwal</h1>
-        <p>MBA Candidate specializing in Marketing & Finance . Currently managing end-to-end Merchant Onboarding and Fraud Risk Management for partner gateways including <strong>HDFC Bank, Easebuzz, and PhonePe</strong>.</p>
+        <span class="badge">
+            <i class="fas fa-shield-halved"></i>
+            Risk Analyst @ Pixel Truth
+        </span>
+
+        <h1>Muskan <span>Agarwal</span></h1>
+
+        <p>
+            MBA Candidate specializing in
+            <strong>Marketing &amp; Finance</strong>.
+            Currently managing end-to-end Merchant Onboarding and
+            Fraud Risk Management for partner gateways including
+            <strong>HDFC Bank, Easebuzz, and PhonePe</strong>.
+        </p>
+
         <div class="btn-group">
-            <a href="https://linkedin.com/in/muskan-agarwal-58710a343" target="_blank" class="btn btn-primary"><i class="fab fa-linkedin"></i> LinkedIn Profile</a>
-            <a href="mailto:agarwalmuskan148@gmail.com" class="btn btn-secondary"><i class="fas fa-envelope"></i> Email Me</a>
+            <a href="https://linkedin.com/in/muskan-agarwal-58710a343"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="btn btn-primary">
+                <i class="fab fa-linkedin"></i>
+                LinkedIn Profile
+            </a>
+
+            <a href="mailto:agarwalmuskan148@gmail.com"
+               class="btn btn-secondary">
+                <i class="fas fa-envelope"></i>
+                Email Me
+            </a>
+
+            <!-- Resume Download Button -->
+            <a href="./Muskan_Agarwal_Resume.pdf"
+               download="Muskan_Agarwal_Resume.pdf"
+               class="btn btn-secondary">
+                <i class="fas fa-download"></i>
+                Download Resume
+            </a>
         </div>
     </div>
 </section>
 
-<!-- Experience Section -->
-<section class="section" id="experience">
+<!-- Work Experience -->
+<section class="section reveal" id="experience">
     <h2 class="section-title">Work Experience</h2>
+
     <div class="cards-grid">
         <div class="card">
             <div class="card-header">
@@ -652,13 +651,26 @@
                     <div class="card-title">Risk Analyst</div>
                     <div class="card-subtitle">Pixel Truth</div>
                 </div>
-                <span class="date-badge">May 2024 - Present</span>
+                <span class="date-badge">May 2026 - Present</span>
             </div>
+
             <ul>
-                <li>Analyzed and verified 2,000+ merchant websites (approx. 95 per week) for leading fintech and banking clients including Easebuzz, NPCI, HDFC, PhonePe, and RBL, ensuring accurate categorization and risk assessment.</li>
-                <li>• Managed end-to-end data collection, MCC categorization, quality checks, and client reporting in Excel across large datasets, sustaining 94% accuracy.</li>
-                <li>• Prepared and delivered structured analytical reports, translating website and merchant data into actionable insights for business and risk decision-making.</li>
-                <!-- <li>Maintain strict compliance controls while maintaining optimal onboarding Turnaround Time (TAT).</li> -->
+                <li>
+                    Analyzed and verified 2,000+ merchant websites
+                    (approx. 95 per week) for leading fintech and banking
+                    clients including Easebuzz, NPCI, HDFC, PhonePe, and RBL,
+                    ensuring accurate categorization and risk assessment.
+                </li>
+                <li>
+                    Managed end-to-end data collection, MCC categorization,
+                    quality checks, and client reporting in Excel across
+                    large datasets, sustaining 94% accuracy.
+                </li>
+                <li>
+                    Prepared and delivered structured analytical reports,
+                    translating website and merchant data into actionable
+                    insights for business and risk decision-making.
+                </li>
             </ul>
         </div>
 
@@ -666,32 +678,44 @@
             <div class="card-header">
                 <div>
                     <div class="card-title">Finance Intern</div>
-                    <div class="card-subtitle">Sanjeev Gaurav & Associates</div>
+                    <div class="card-subtitle">Sanjeev Gaurav &amp; Associates</div>
                 </div>
                 <span class="date-badge">May 2023 - Jun 2023</span>
             </div>
+
             <ul>
-                <li>Supported account reconciliation, balance sheet preparation, data entry, and vouching for 4-5 clients.</li>
-                <!-- <li>Assisted senior auditors in verifying client financial statements and accounting standard compliance.</li> -->
-                <li>Assisted senior auditors in verifying client financial statements, ensuring compliance with accounting standards and reducing documentation errors.</li>
+                <li>
+                    Supported account reconciliation, balance sheet
+                    preparation, data entry, and vouching for 4-5 clients.
+                </li>
+                <li>
+                    Assisted senior auditors in verifying client financial
+                    statements, ensuring compliance with accounting
+                    standards and reducing documentation errors.
+                </li>
             </ul>
         </div>
     </div>
 </section>
 
-<!-- Education Section -->
-<section class="section" id="education">
+<!-- Education -->
+<section class="section reveal" id="education">
     <h2 class="section-title">Education</h2>
+
     <div class="cards-grid">
         <div class="card">
             <div class="card-header">
                 <div>
-                    <div class="card-title">MBA (Marketing & Finance)</div>
+                    <div class="card-title">MBA (Marketing &amp; Finance)</div>
                     <div class="card-subtitle">Dayalbagh Educational Institute</div>
                 </div>
-                <span class="date-badge">Pursuing</span>
+                <span class="date-badge">Expected by Dec 2026</span>
             </div>
-            <p style="color: var(--text-muted); font-size: 0.95rem;">Specializing in financial modeling, market research, corporate valuation, and strategic brand management.</p>
+
+            <p>
+                Specializing in financial modeling, market research,
+                corporate valuation, and strategic brand management.
+            </p>
         </div>
 
         <div class="card">
@@ -702,242 +726,287 @@
                 </div>
                 <span class="date-badge">CGPA: 8.2 / 10</span>
             </div>
-            <p style="color: var(--text-muted); font-size: 0.95rem;">Graduated with top academic standing, mastering corporate accounting, managerial economics, and financial statistics.</p>
+
+            <p>
+                Graduated with top academic standing, mastering corporate
+                accounting, managerial economics, and financial statistics.
+            </p>
         </div>
     </div>
 </section>
 
-<!-- Projects Section -->
-<section class="section" id="projects">
+<!-- Projects -->
+<section class="section reveal" id="projects">
     <h2 class="section-title">Key Projects</h2>
+
     <div class="cards-grid">
         <div class="card">
-            <div class="card-title" style="margin-bottom: 0.5rem;">Alvo - Sustainable Packaging Business</div>
-            <p style="color: var(--text-muted); font-size: 0.95rem;">
-               Developed ALVO, a sustainable product business concept focused on eco-friendly food packaging and sustainable bamboo drinkware, combining marketing strategy with financial and business feasibility analysis. Conducted market research to understand customer preferences, identify target segments, and assess product demand and market potential. Evaluated product feasibility from a business perspective, considering affordability, customer value, and commercial viability. Developed the brand’s digital presence through Instagram and a product-focused website, applying digital marketing, brand positioning, and customer engagement strategies. This project strengthened my skills in market research, consumer behaviour analysis, brand development, digital marketing, business feasibility assessment, financial thinking, and strategic decision-making.
+            <div class="card-title" style="margin-bottom:.5rem;">
+                Alvo - Sustainable Packaging Business
+            </div>
+
+            <p>
+                Developed ALVO, a sustainable product business concept
+                focused on eco-friendly food packaging and sustainable
+                bamboo drinkware, combining marketing strategy with
+                financial and business feasibility analysis. Conducted
+                market research to understand customer preferences,
+                identify target segments, and assess product demand and
+                market potential. Evaluated product feasibility from a
+                business perspective, considering affordability, customer
+                value, and commercial viability. Developed the brand's
+                digital presence through Instagram and a product-focused
+                website, applying digital marketing, brand positioning,
+                and customer engagement strategies. This project
+                strengthened my skills in market research, consumer
+                behaviour analysis, brand development, digital marketing,
+                business feasibility assessment, financial thinking,
+                and strategic decision-making.
             </p>
-            <a href="https://alvoe.netlify.app/" target="_blank">https://alvoe.netlify.app/</a>
-            
-      </div>
+
+            <a href="https://alvoe.netlify.app/"
+               target="_blank"
+               rel="noopener noreferrer">
+                <i class="fas fa-external-link-alt"></i>
+                Visit Alvo Website
+            </a>
+        </div>
 
         <div class="card">
-            <div class="card-title" style="margin-bottom: 0.5rem;">Brand Loyalty & Consumer Behavior Study</div>
-            <p style="color: var(--text-muted); font-size: 0.95rem;">
-                Conducted a research project on the impact of brand loyalty on consumer behaviour and customer retention, collecting responses from nearly 100 respondents through Google Forms. Analysed consumer preferences, satisfaction, repeat purchase behaviour, and factors influencing brand loyalty to understand how brands build long-term customer relationships. This project strengthened my skills in market research, consumer behaviour analysis, data collection, customer retention strategies, and marketing insights.
+            <div class="card-title" style="margin-bottom:.5rem;">
+                Brand Loyalty &amp; Consumer Behavior Study
+            </div>
+
+            <p>
+                Conducted a research project on the impact of brand loyalty
+                on consumer behaviour and customer retention, collecting
+                responses from nearly 100 respondents through Google Forms.
+                Analysed consumer preferences, satisfaction, repeat purchase
+                behaviour, and factors influencing brand loyalty to
+                understand how brands build long-term customer relationships.
+                This project strengthened my skills in market research,
+                consumer behaviour analysis, data collection, customer
+                retention strategies, and marketing insights.
             </p>
         </div>
     </div>
 </section>
 
-<!-- Skills Section -->
-<section class="section" id="skills">
+<!-- Skills -->
+<section class="section reveal" id="skills">
     <h2 class="section-title">Core Competencies</h2>
+
     <div class="skills-container">
-        <!-- Requested New Skills & Existing Skills -->
-
-
-
-         <div class="skill-tag"><i class="fas fa-chess"></i> Marketing Strategy</div>
+        <div class="skill-tag"><i class="fas fa-chess"></i> Marketing Strategy</div>
         <div class="skill-tag"><i class="fas fa-chart-pie"></i> Market Research</div>
         <div class="skill-tag"><i class="fas fa-users-viewfinder"></i> Consumer Behavior</div>
         <div class="skill-tag"><i class="fas fa-copyright"></i> Brand Management</div>
         <div class="skill-tag"><i class="fas fa-filter"></i> Inbound Marketing</div>
         <div class="skill-tag"><i class="fas fa-magnifying-glass-chart"></i> SEO</div>
         <div class="skill-tag"><i class="fas fa-pen-nib"></i> Content Strategy</div>
-
-
-
-         <div class="skill-tag"><i class="fas fa-bullseye"></i> Lead Generation</div>
-         <div class="skill-tag"><i class="fas fa-chart-line"></i> Financial Analysis</div>
-         <div class="skill-tag"><i class="fas fa-file-invoice-dollar"></i> Account Reconciliation</div>
-         <div class="skill-tag"><i class="fas fa-chart-column"></i> Data Analysis</div>
-         <div class="skill-tag"><i class="fas fa-file-contract"></i> Reporting</div>
-         <div class="skill-tag"><i class="fas fa-university"></i> Payment Gateways (HDFC/PhonePe)</div>
-         <div class="skill-tag"><i class="fas fa-magnifying-glass"></i> Fraud Mitigation & KYC</div>
-         <div class="skill-tag"><i class="fas fa-shield-halved"></i> Merchant Risk Assessment</div>
-         <!-- <div class="skill-tag"><i class="fas fa-user-check"></i> Merchant Onboarding</div> -->
-
-
-
-       
-        <!-- <div class="skill-tag"><i class="fas fa-bullseye"></i> Lead Generation</div> -->
-        
-        
-
-        
-        
-        
-        
-        <!-- <div class="skill-tag"><i class="fas fa-lightbulb"></i> Business Strategy</div> -->
-        <!--  -->
-        
+        <div class="skill-tag"><i class="fas fa-bullseye"></i> Lead Generation</div>
+        <div class="skill-tag"><i class="fas fa-chart-line"></i> Financial Analysis</div>
+        <div class="skill-tag"><i class="fas fa-file-invoice-dollar"></i> Account Reconciliation</div>
+        <div class="skill-tag"><i class="fas fa-chart-column"></i> Data Analysis</div>
+        <div class="skill-tag"><i class="fas fa-file-contract"></i> Reporting</div>
+        <div class="skill-tag"><i class="fas fa-university"></i> Payment Gateways (HDFC/PhonePe)</div>
+        <div class="skill-tag"><i class="fas fa-magnifying-glass"></i> Fraud Mitigation &amp; KYC</div>
+        <div class="skill-tag"><i class="fas fa-shield-halved"></i> Merchant Risk Assessment</div>
         <div class="skill-tag"><i class="fas fa-user-check"></i> Merchant Onboarding</div>
+    </div>
+</section>
+
+<!-- Contact -->
+<section class="section reveal" id="contact">
+    <h2 class="section-title">Get In Touch</h2>
+
+    <div class="card" style="text-align:center; max-width:700px; margin:auto;">
+        <p>
+            Interested in connecting about marketing, market research,
+            data analysis, or business opportunities? Feel free to reach out.
+        </p>
+
+        <div class="btn-group" style="justify-content:center; margin-top:1.5rem;">
+            <a href="mailto:agarwalmuskan148@gmail.com"
+               class="btn btn-primary">
+                <i class="fas fa-envelope"></i>
+                Email Me
+            </a>
+
+            <a href="https://linkedin.com/in/muskan-agarwal-58710a343"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="btn btn-secondary">
+                <i class="fab fa-linkedin"></i>
+                Connect on LinkedIn
+            </a>
+        </div>
     </div>
 </section>
 
 <!-- Footer -->
 <footer>
     <div class="footer-socials">
-        <a href="https://linkedin.com/in/muskan-agarwal-58710a343" target="_blank"><i class="fab fa-linkedin"></i></a>
-        <a href="mailto:agarwalmuskan148@gmail.com"><i class="fas fa-envelope"></i></a>
+        <a href="https://linkedin.com/in/muskan-agarwal-58710a343"
+           target="_blank"
+           rel="noopener noreferrer"
+           title="LinkedIn"
+           aria-label="LinkedIn">
+            <i class="fab fa-linkedin"></i>
+        </a>
+
+        <a href="mailto:agarwalmuskan148@gmail.com"
+           title="Email"
+           aria-label="Email">
+            <i class="fas fa-envelope"></i>
+        </a>
     </div>
-    <p style="color: var(--text-muted); font-size: 0.9rem;">&copy; 2026 Muskan Agarwal. All Rights Reserved.</p>
+
+    <p style="color:var(--text-muted); font-size:.85rem;">
+        &copy; 2026 Muskan Agarwal. All Rights Reserved.
+    </p>
 </footer>
 
-<!-- Space Animation Script -->
 <script>
-    const canvas = document.getElementById('space-canvas');
-    const ctx = canvas.getContext('2d');
+/* Light particle background */
+const canvas = document.getElementById('space-canvas');
+const ctx = canvas.getContext('2d');
 
-    let width, height;
-    let stars = [];
-    let shootingStars = [];
-    let mouse = { x: null, y: null, radius: 130 };
+let width;
+let height;
+let particles = [];
+let mouse = { x: null, y: null, radius: 150 };
 
-    window.addEventListener('mousemove', (e) => {
-        mouse.x = e.clientX;
-        mouse.y = e.clientY;
-    });
+function resizeCanvas() {
+    width = window.innerWidth;
+    height = window.innerHeight;
 
-    function resizeCanvas() {
-        width = window.innerWidth;
-        height = window.innerHeight;
-        canvas.width = width;
-        canvas.height = height;
+    canvas.width = width;
+    canvas.height = height;
+}
+
+window.addEventListener('mousemove', function(e) {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+});
+
+window.addEventListener('mouseleave', function() {
+    mouse.x = null;
+    mouse.y = null;
+});
+
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas();
+
+class Particle {
+    constructor() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+        this.size = Math.random() * 2 + 1;
+        this.baseAlpha = Math.random() * .3 + .2;
+        this.alpha = this.baseAlpha;
+        this.speedX = (Math.random() - .5) * .4;
+        this.speedY = (Math.random() - .5) * .4;
+
+        const colors = ['#818cf8','#60a5fa','#38bdf8','#c084fc'];
+        this.color = colors[Math.floor(Math.random() * colors.length)];
     }
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
 
-    class Star {
-        constructor() {
-            this.x = Math.random() * width;
-            this.y = Math.random() * height;
-            this.size = Math.random() * 2 + 0.5;
-            this.baseAlpha = Math.random() * 0.7 + 0.3;
+    update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+
+        if (this.x < 0) this.x = width;
+        if (this.x > width) this.x = 0;
+        if (this.y < 0) this.y = height;
+        if (this.y > height) this.y = 0;
+
+        if (mouse.x !== null && mouse.y !== null) {
+            const dx = mouse.x - this.x;
+            const dy = mouse.y - this.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+
+            this.alpha = distance < mouse.radius ? .75 : this.baseAlpha;
+        } else {
             this.alpha = this.baseAlpha;
-            this.speedX = (Math.random() - 0.5) * 0.3;
-            this.speedY = (Math.random() - 0.5) * 0.3;
-            this.color = Math.random() > 0.4 ? '#3b82f6' : (Math.random() > 0.5 ? '#8b5cf6' : '#06b6d4');
-        }
-
-        update() {
-            this.x += this.speedX;
-            this.y += this.speedY;
-
-            if (this.x < 0) this.x = width;
-            if (this.x > width) this.x = 0;
-            if (this.y < 0) this.y = height;
-            if (this.y > height) this.y = 0;
-
-            if (mouse.x && mouse.y) {
-                let dx = mouse.x - this.x;
-                let dy = mouse.y - this.y;
-                let distance = Math.sqrt(dx * dx + dy * dy);
-                if (distance < mouse.radius) {
-                    this.alpha = 1;
-                } else {
-                    this.alpha = this.baseAlpha;
-                }
-            }
-        }
-
-        draw() {
-            ctx.fillStyle = this.color;
-            ctx.globalAlpha = this.alpha;
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-            ctx.fill();
-            ctx.globalAlpha = 1;
         }
     }
 
-    class ShootingStar {
-        constructor() {
-            this.reset();
-        }
-
-        reset() {
-            this.x = Math.random() * width;
-            this.y = Math.random() * (height / 2);
-            this.len = Math.random() * 80 + 40;
-            this.speed = Math.random() * 10 + 6;
-            this.size = Math.random() * 1 + 0.5;
-            this.waitTime = Date.now() + Math.random() * 3000 + 1000;
-            this.active = false;
-        }
-
-        update() {
-            if (!this.active) {
-                if (Date.now() >= this.waitTime) {
-                    this.active = true;
-                }
-                return;
-            }
-
-            this.x -= this.speed;
-            this.y += this.speed;
-
-            if (this.x < -100 || this.y > height + 100) {
-                this.reset();
-            }
-        }
-
-        draw() {
-            if (!this.active) return;
-            ctx.strokeStyle = 'rgba(255, 255, 255, 0.85)';
-            ctx.lineWidth = this.size;
-            ctx.beginPath();
-            ctx.moveTo(this.x, this.y);
-            ctx.lineTo(this.x + this.len, this.y - this.len);
-            ctx.stroke();
-        }
+    draw() {
+        ctx.fillStyle = this.color;
+        ctx.globalAlpha = this.alpha;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.globalAlpha = 1;
     }
+}
 
-    for (let i = 0; i < 150; i++) {
-        stars.push(new Star());
-    }
+for (let i = 0; i < 65; i++) {
+    particles.push(new Particle());
+}
 
-    for (let i = 0; i < 3; i++) {
-        shootingStars.push(new ShootingStar());
-    }
+function connectParticles() {
+    const maxDistance = 110;
 
-    function connectConstellations() {
-        if (!mouse.x || !mouse.y) return;
-        for (let a = 0; a < stars.length; a++) {
-            let dx = mouse.x - stars[a].x;
-            let dy = mouse.y - stars[a].y;
-            let distance = Math.sqrt(dx * dx + dy * dy);
+    for (let a = 0; a < particles.length; a++) {
+        for (let b = a + 1; b < particles.length; b++) {
+            const dx = particles[a].x - particles[b].x;
+            const dy = particles[a].y - particles[b].y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
 
-            if (distance < mouse.radius) {
-                ctx.strokeStyle = 'rgba(6, 182, 212, ' + (1 - distance / mouse.radius) * 0.45 + ')';
-                ctx.lineWidth = 0.8;
+            if (distance < maxDistance) {
+                const opacity = (1 - distance / maxDistance) * .2;
+
+                ctx.strokeStyle = 'rgba(165,180,252,' + opacity + ')';
+                ctx.lineWidth = 1;
                 ctx.beginPath();
-                ctx.moveTo(stars[a].x, stars[a].y);
-                ctx.lineTo(mouse.x, mouse.y);
+                ctx.moveTo(particles[a].x, particles[a].y);
+                ctx.lineTo(particles[b].x, particles[b].y);
                 ctx.stroke();
             }
         }
     }
+}
 
-    function renderSpace() {
-        ctx.clearRect(0, 0, width, height);
+function animate() {
+    ctx.clearRect(0, 0, width, height);
 
-        stars.forEach(star => {
-            star.update();
-            star.draw();
+    particles.forEach(function(particle) {
+        particle.update();
+        particle.draw();
+    });
+
+    connectParticles();
+    requestAnimationFrame(animate);
+}
+
+animate();
+
+/* Scroll reveal animations */
+const revealElements = document.querySelectorAll('.reveal');
+
+if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
         });
+    }, {
+        threshold: 0.12
+    });
 
-        connectConstellations();
-
-        shootingStars.forEach(sStar => {
-            sStar.update();
-            sStar.draw();
-        });
-
-        requestAnimationFrame(renderSpace);
-    }
-
-    renderSpace();
+    revealElements.forEach(function(element) {
+        observer.observe(element);
+    });
+} else {
+    revealElements.forEach(function(element) {
+        element.classList.add('visible');
+    });
+}
 </script>
+
 </body>
 </html>
